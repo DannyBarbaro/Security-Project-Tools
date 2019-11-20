@@ -16,11 +16,14 @@ def getRepoLinks(user):
 def scan(url):
   result = subprocess.check_output(['python3', 'VxApi/vxapi.py', 'scan_url_to_file', url, 'all'])
   data = json.loads(result.decode('ascii'))
-  haLink = 'https://hybrid-analysis.com/sample/' + data['sha256']
+  haLink = 'https://hybrid-analysis.com/sample/'
   vtResult = 'No'
-  for test in data['scanners']:
-    if test['name'] == 'VirusTotal' and test['status'] == 'malicious':
-      vtResult = 'Yes'
+  if 'sha256' in data:
+    haLink += data['sha256']
+  if 'scanners' in data:
+    for test in data['scanners']:
+      if test['name'] == 'VirusTotal' and test['status'] == 'malicious':
+        vtResult = 'Yes'
   return haLink, vtResult
 
 def main():
