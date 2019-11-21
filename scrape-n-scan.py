@@ -1,10 +1,12 @@
 # pip install requests
-# pip install colorama
+# pip install colorama 
+# pip install tqdm
 import sys
 import requests
 import subprocess
 import json
 import csv
+from tqdm import tqdm
 
 def getRepoLinks(user):
   data = requests.get(url = 'https://api.github.com/users/' + user + '/repos').json()
@@ -32,7 +34,7 @@ def main():
     rows = [['Project ID','Project Name','Project Link','Zip Link','HA Link','HA Detection Result','VT flagged']]
     count = 1
     repos = getRepoLinks(username)
-    for repo in repos:
+    for repo in tqdm(repos):
       halink, vtresult = scan(repo[2])
       rows.append([str(count),repo[0],repo[1],repo[2],halink,'',vtresult])
       count += 1
