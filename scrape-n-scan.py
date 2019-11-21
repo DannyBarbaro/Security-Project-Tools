@@ -9,7 +9,8 @@ import csv
 from tqdm import tqdm
 
 def getRepoLinks(user):
-  data = requests.get(url = 'https://api.github.com/users/' + user + '/repos').json()
+  data = requests.get(url = 'https://api.github.com/users/' + user + '/repos?per_page=100').json()
+  print(len(data))
   repos = []
   for item in data:
     repos.append([item['name'], item['html_url'], item['html_url'] + '/archive/master.zip'])
