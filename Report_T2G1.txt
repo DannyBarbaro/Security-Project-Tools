@@ -1,0 +1,24 @@
+\documentclass[12pt]{report} 
+
+\begin{document}
+
+\title{Some Title}
+\author{Daniel Barbaro\and Jason Dong\and Sabrina Tay\and Jennifer Wourms}
+\maketitle
+\tableofcontents % need to run the LATEX file twice for the table of contents to appear
+
+\chapter{Background} % Please change the chapter titles lol they are just suggestions
+\pagenumbering{arabic}
+% Start writing here...
+
+\chapter{Our Project}
+
+\chapter{The Malware Network}
+
+\chapter{Solutions}
+
+\chapter{Challenges}
+
+\chapter{Summary}
+
+\end{document}
