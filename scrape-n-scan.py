@@ -57,7 +57,7 @@ def getFollowing(user):
 def makeFollowingCSV(username, following):
   rows = [['ID', 'Username', 'Profile Link']]
   count = 1
-  for user in following:
+  for user in tqdm(following):
     rows.append([str(count),user,'https://github.com/'+user])
     count += 1
   writeToCSV(username+'_following.csv', rows)
@@ -71,6 +71,7 @@ def writeToCSV(name, rows):
 def runCrawl(username, depth):
   if depth > 0:
     following = scanUser(username)
+    makeFollowingCSV(username, following)
     print('Number users following: ' +  str(len(following)))
     for user in following:
       runCrawl(user, depth-1)
